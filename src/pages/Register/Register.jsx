@@ -1,32 +1,9 @@
 /* eslint-disable no-unused-vars */
+import { useState } from "react";
 import SocialLoginBtn from "./../SocialLoginBtn/SocialLoginBtn";
-import { useContext, useState } from "react";
-import { AuthContext } from "../../provider/AuthProvider";
 
 const Register = () => {
-  const { registerUser } = useContext(AuthContext);
-
-  const [email, setEmail] = useState("");
-  const [name, setName] = useState("");
-  const [password, setPassword] = useState("");
-  const [error, setError] = useState("");
-
-  const handleRegistration = (event) => {
-    event.preventDefault();
-    if (!/^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/.test(password)) {
-      setError("password not valid need 8 char ");
-      return;
-    }
-    if ((name, email, password)) {
-      registerUser(email, password)
-        .then((result) => {
-          console.log(result.user);
-        })
-        .catch((err) => {
-          console.log(err.message);
-        });
-    }
-  };
+  const [error, setError] = useState('')
   return (
     <div>
       <div className="container">
@@ -36,21 +13,19 @@ const Register = () => {
               <p className="text-danger">{error}</p>
               <form action="">
                 <input
-                  onChange={(e) => setName(e.target.value)}
                   className="email p-3 m-2"
                   type="text"
                   placeholder="enter your Name"
                   required
                 />
                 <input
-                  onChange={(e) => setEmail(e.target.value)}
                   className="email p-3 m-2"
                   type="email"
                   placeholder="enter your email"
                 />
                 <div className="pass-container">
                   <input
-                    onChange={(e) => setPassword(e.target.value)}
+
                     className="password p-3 m-2"
                     type="text"
                     placeholder="type your password"
@@ -63,7 +38,6 @@ const Register = () => {
                   {/* <button>toggle</button> */}
                 </div>
                 <button
-                  onClick={handleRegistration}
                   className="btn btn-info w-75 p-2 mt-3"
                 >
                   Register

@@ -3,19 +3,8 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import "./Menubar.css";
-import { useContext } from "react";
-import { AuthContext } from "../../provider/AuthProvider";
 
 const Menubar = () => {
-  const { user, logOut } = useContext(AuthContext);
-  console.log(user?.email);
-  const handleLogout = () => {
-    logOut()
-      .then()
-      .catch((err) => {
-        console.log(err);
-      });
-  };
   return (
     <div className="Menubar-container">
       <div className="logo">logo</div>
@@ -27,15 +16,12 @@ const Menubar = () => {
           <li>Services</li>
         </Link>
 
-        {user?.email ? (
           <li>
-            <button onClick={handleLogout}>Logout</button>
+            <button>Logout</button>
           </li>
-        ) : (
           <Link to="/login">
             <li>Login</li>
           </Link>
-        )}
         {/* <li>{user?.email}</li> */}
         <Link to="/register">
           <li>Registration</li>
